@@ -10,7 +10,7 @@
 
     The collected information will be uploaded to Azure storage and the script will clean up anything that was saved locally.
 
-    Before using this script make sure to set the values for <StorageAccountKey> and <StorageAccountName>.
+    Before using this script make sure to set the values for <StorageAccountKey>, <StorageAccountName> and <cContainerName>.
 
     This script is created for usage with Microsoft Intune.
 
@@ -29,6 +29,10 @@
 .LINK
 
     http://blog.colemberg.ch
+    Inspiration from all this Blogs:
+    - https://www.petervanderwoude.nl/post/get-windows-autopilot-device-information-of-microsoft-intune-managed-devices/
+    - https://oliverkieselbach.com/2017/11/16/gather-windows-10-autopilot-info-in-azure-blob-storage-during-wipe-and-reload/
+    - https://robindotnet.wordpress.com/2015/07/08/uploading-and-downloading-files-to-azure-blob-storage-with-powershell/
 
 .EXAMPLE
 
@@ -63,13 +67,13 @@ $fileName = "$env:COMPUTERNAME.csv"
 
 $workingDirectory = Join-Path $env:WINDIR "Temp"
 
-$StorageAccountKey = "YfNCbesDyyppLnRA/LLtY0wXr1xSWOlB/zyojSltO93tRdXy2o8B/GVmKqcIQTy5muTwm4LRkGr6Ns18rWlryA=="
+$StorageAccountKey = "<StorageAccountKey>"
 
-$StorageAccountName = "autopilotinfos"
+$StorageAccountName = "<StorageAccountName>"
+
+$ContainerName = "<containerName>"
 
 $ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName ` -StorageAccountKey $StorageAccountKey
-
-$ContainerName = "collectcsv"
 
 
 #Try to save the script from the PowerShell Gallery
