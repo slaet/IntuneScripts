@@ -12,7 +12,7 @@ to Intune as a Autopilot Device.
 We also and have to create a Profile Assigenment Group First, to add the Device after the Import direct to this Group that the Device are ready for Autopilot.
 
 Before using this script make sure to set the variables: 
-<StorageAccountKey>
+<$StorageAccountKey>
 <$ContainerName>
 <StorageAccountName>
 <$tenant>
@@ -25,9 +25,11 @@ This script is created for usage with Microsoft Intune and Azure Automation!
 Copy & Past the Script to a Runbuck in the Azure Automation Account and use it from There!
 
 .NOTES
-Author:  Mirko Colemberg / baseVISION
-Contact: mirko@colemberg.ch
-Date:    11.07.2018
+Author:    Mirko Colemberg / baseVISION
+Co-Author: Athiraiyan Kugaseelan
+get-Help:  David Falkus
+Contact:   mirko@colemberg.ch
+Date:      11.07.2018
 
 
 History
@@ -301,7 +303,7 @@ $JSON = @"
 "@
 
             Invoke-RestMethod -Uri $uri -Headers $authHeader -Method Post -Body $JSON -ContentType "application/json"
-            #Remove-Item $file.name
+            Remove-AzureStorageBlob -Container $containername -context $sourceContext -Blob $file.Name 
 		}
 
 #endregion
