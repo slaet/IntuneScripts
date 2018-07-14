@@ -158,7 +158,7 @@ $JSON = @"
                 "serialNumber": "$SN",
                 "productKey": "$WPK",
                 "hardwareIdentifier": "$HH",
-                "orderIdentifier": ""
+                "orderIdentifier": "Import_existing"
             }
 
 "@
